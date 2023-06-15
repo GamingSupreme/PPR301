@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Move Speed")]
     //Set player move speed
     public float moveSpeed;
 
+    [Header("Ground Checks")]
     //Set Players height
     public float playerHeight;
-
     //Determine what is ground and what isnt
     //(Make sure to change the layer of the ground terrain to this layer)
     public LayerMask whatIsGround;
-
     //Used for checking whether the player can jump or not
     bool grounded;
-
     //To help simulate proper movement
     public float groundDrag;
+
+    [Header("Jump Variables")]
+    //Set how strong the players jump is
+    public float jumpForce;
+    //determine how often we want to let the player jump
+    public float jumpCooldown;
+    //If we want to make the player move faster in the air compared to on ground
+    public float airMultipler;
+    //Check if the player is in a state to jump
+    bool readyToJump = true;
+
+    [Header("Keybinds")]
+    //Set our jump keybind to space
+    public KeyCode jumpKey = KeyCode.Space;
 
     //Reference players orientation
     public Transform orientation;
@@ -29,7 +42,6 @@ public class Movement : MonoBehaviour
 
     //Reference the players direction
     Vector3 inputDir;
-
     //reference players rigidbody
     Rigidbody rb;
 
@@ -70,6 +82,18 @@ public class Movement : MonoBehaviour
         //Get the players inputs and store them in our variables
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
+
+        //Whenever the player presses the jump key, check to jump
+        //if the player, presses space, is ready to jump and grounded
+        if (Input.GetKey(jumpKey) && readyToJump && grounded){
+            readyToJump = false;
+
+            //Jump
+            Jump();
+
+            //Then start a cooldown which will set ready to jump back to true once reaching zero
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
     }
 
     private void MovePlayer(){
@@ -77,8 +101,14 @@ public class Movement : MonoBehaviour
         //In the cam script
         inputDir = orientation.forward* verticalInput + orientation.right * horizontalInput;
 
-        //adds force in the direction the player is facing
-        rb.AddForce(inputDir.normalized * moveSpeed * 10f, ForceMode.Force);
+        //If grounded, adds force in the direction the player is facing
+        if (grounded){
+            rb.AddForce(inputDir.normalized * moveSpeed * 10f, ForceMode.Force);
+        }//If were not grounded, do the same but multiply speed by our air multiplier
+        else if (!grounded){
+            rb.AddForce(inputDir.normalized * moveSpeed * 10f * airMultipler, ForceMode.Force);
+        }
+
     }
 
     private void SpeedControl(){
@@ -92,5 +122,20 @@ public class Movement : MonoBehaviour
             //then we sent out current velocity to the max we would like it to go at
             rb.velocity = new Vector3(maxVelocity.x, rb.velocity.y, maxVelocity.z);
         }
+    }
+
+    private void Jump(){
+        //Reset y velocity whenever going to make a jump
+        //So the jump is always the same and accurate
+        Debug.Log("Attempted Jump");
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        //Apply force upwards on the player with our predetermined force
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void ResetJump(){
+        readyToJump = true;
     }
 }
