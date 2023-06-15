@@ -16,7 +16,7 @@ public class MainCam : MonoBehaviour
     private void Start()
     {
         //Make Cursor invisible as we will be adding a reticle later on
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
