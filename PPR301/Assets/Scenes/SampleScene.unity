@@ -307,7 +307,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312486025}
-  m_LocalRotation: {x: 0.07088902, y: 0.000000017338246, z: -0.0000000012321912, w: 0.9974842}
+  m_LocalRotation: {x: 0.07088901, y: -0.000000016815445, z: 0.0000000011950368, w: 0.9974842}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -894,7 +894,7 @@ GameObject:
   - component: {fileID: 1060767942}
   - component: {fileID: 1060767941}
   - component: {fileID: 1060767940}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  groundDrag: 5
+  groundDrag: 2
   orientation: {fileID: 500130560}
 --- !u!1 &1366971166
 GameObject:
