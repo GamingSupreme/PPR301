@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
     public float playerHeight;
 
     //Determine what is ground and what isnt
+    //(Make sure to change the layer of the ground terrain to this layer)
     public LayerMask whatIsGround;
 
     //Used for checking whether the player can jump or not
@@ -47,6 +48,9 @@ public class Movement : MonoBehaviour
         //Make sure to be checking for player input on every update frame
         PlayerInput();
 
+        //Make sure to be always checking if the player is reaching max speed
+        SpeedControl();
+
         //Check if the player is touching the ground, if they are apply drag
         //Otherwise dont
         if (grounded) {
@@ -77,5 +81,16 @@ public class Movement : MonoBehaviour
         rb.AddForce(inputDir.normalized * moveSpeed * 10f, ForceMode.Force);
     }
 
+    private void SpeedControl(){
+        //Checks the Current Objects flat velocity
+        Vector3 curVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
+        //if our current velocity if higher than out move speed then were going too fast
+        if (curVelocity.magnitude > moveSpeed){
+            //so we calculate what out max should be
+            Vector3 maxVelocity = curVelocity.normalized * moveSpeed;
+            //then we sent out current velocity to the max we would like it to go at
+            rb.velocity = new Vector3(maxVelocity.x, rb.velocity.y, maxVelocity.z);
+        }
+    }
 }
