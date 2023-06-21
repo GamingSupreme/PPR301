@@ -29,6 +29,11 @@ public class Movement : MonoBehaviour
     //Check if the player is in a state to jump
     bool readyToJump = true;
 
+    [Header("Animation Controller")]
+
+    //Set a variable for the animator
+    public Animator animator;
+
     [Header("Keybinds")]
     
     //Set our jump keybind to space
@@ -47,6 +52,8 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
 
     private void Start() {
+        animator = GetComponent<Animator>();
+
         //On scene start we reference this objects rigid body to out variable
         //and freeze its rotation
         rb = GetComponent<Rigidbody>();
@@ -55,6 +62,9 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        //Check to see if the player is moving
+        IsPlayerMoving();
+
         //Check if the player is touching the ground
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
 
@@ -94,6 +104,19 @@ public class Movement : MonoBehaviour
 
             //Then start a cooldown which will set ready to jump back to true once reaching zero
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+
+    private void IsPlayerMoving(){
+        //We check to see if you player is pressing any inputs
+        //if inputs are pushed then the player is moving and needs to enter running state
+        //other wise return to idle state
+        if (horizontalInput != 0f || verticalInput != 0f){
+            print("player is running");
+            animator.SetBool("IsRunning", true);
+        }else if (horizontalInput == 0f && verticalInput == 0f){
+            print("player isnt running");
+            animator.SetBool("IsRunning", false);
         }
     }
 
