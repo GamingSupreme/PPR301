@@ -7,6 +7,7 @@ public class FieldOfView : MonoBehaviour
 {
     // how far the ai can see
     public float radius;
+    [Range(0, 360)]
     // how large the fov is for the ai
     public float angle;
 
@@ -81,7 +82,7 @@ public class FieldOfView : MonoBehaviour
         }
         // if the player was seen by enemy before but is now out of view then reset the
         // canSeePlayer statment to false
-        else if (canSeePlayer);
+        else if (canSeePlayer)
             canSeePlayer = false;
     }
 }
