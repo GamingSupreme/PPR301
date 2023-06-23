@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 133761223}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 50, y: 1, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -520,7 +520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235714999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.94, y: 1.43, z: 0.18}
+  m_LocalPosition: {x: -5.47, y: 1.43, z: -0.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,6 +540,7 @@ GameObject:
   - component: {fileID: 1464621855}
   - component: {fileID: 1464621854}
   - component: {fileID: 1464621853}
+  - component: {fileID: 1464621858}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -559,8 +560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3e8ccdc951ab464f8f69b84d6f4dafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 6
-  angle: 87
+  radius: 10
+  angle: 100
   playerRef: {fileID: 1235714999}
   targetMask:
     serializedVersion: 2
@@ -641,13 +642,28 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464621852}
   m_LocalRotation: {x: -0, y: -0.73403466, z: -0, w: 0.6791121}
-  m_LocalPosition: {x: 0.93, y: 1.43, z: 1.43}
+  m_LocalPosition: {x: 6.58, y: 1.43, z: 6.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -94.451, z: 0}
+--- !u!114 &1464621858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464621852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076cab6372d06bc4886e219650b0d516, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fieldOfView_Script: {fileID: 1464621853}
+  wanderSpeed: 3
+  rotationSpeed: 100
 --- !u!1 &2033698903
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +676,7 @@ GameObject:
   - component: {fileID: 2033698906}
   - component: {fileID: 2033698905}
   - component: {fileID: 2033698904}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +754,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033698903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.235, z: 0}
+  m_LocalPosition: {x: -18.58, y: 12.38, z: 26.45}
   m_LocalScale: {x: 1, y: 2.75, z: 7.17}
   m_ConstrainProportionsScale: 0
   m_Children: []
