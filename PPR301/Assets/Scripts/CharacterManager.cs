@@ -6,8 +6,8 @@ public class CharacterManager : MonoBehaviour
 {
     [Header("Stats")]
     //Set some basic stats such as health, stamina ect
-    public float health = 100f;
-    public float stamina = 100f;
+    public float cHealth = 100f;
+    public float cStamina = 100f;
 
     [Header("Keybinds")]
     //Set our jump keybind to space
@@ -25,7 +25,7 @@ public class CharacterManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AttempAttack();
     }
 
     private void AttempAttack(){
@@ -36,12 +36,6 @@ public class CharacterManager : MonoBehaviour
             weapon.GetComponent<BoxCollider>().enabled = true;
 
             //play attack animation of sword
-
-
-            //check if sword collides with an object
-
-        //check if that object is an enemy by tag
-        //if yes deal damage, if not ignore the collision
         }
     }
 }
