@@ -29,7 +29,13 @@ public class Movement : MonoBehaviour
     //Check if the player is in a state to jump
     bool readyToJump = true;
 
+    [Header("Animation Controller")]
+
+    //Set a variable for the animator
+    public Animator animator;
+
     [Header("Keybinds")]
+    
     //Set our jump keybind to space
     public KeyCode jumpKey = KeyCode.Space;
 
@@ -45,7 +51,9 @@ public class Movement : MonoBehaviour
     //reference players rigidbody
     Rigidbody rb;
 
-    private void Start(){
+    private void Start() {
+        animator = GetComponent<Animator>();
+
         //On scene start we reference this objects rigid body to out variable
         //and freeze its rotation
         rb = GetComponent<Rigidbody>();
@@ -54,6 +62,9 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        //Check to see if the player is moving
+        IsPlayerMoving();
+
         //Check if the player is touching the ground
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
 
@@ -67,9 +78,9 @@ public class Movement : MonoBehaviour
         //Otherwise dont
         if (grounded) {
             rb.drag = groundDrag;
-        }else{
+        } else {
             rb.drag = 0;
-        }  
+        }
     }
 
     private void FixedUpdate()
@@ -78,14 +89,14 @@ public class Movement : MonoBehaviour
         MovePlayer();
     }
 
-    private void PlayerInput(){
+    private void PlayerInput() {
         //Get the players inputs and store them in our variables
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
         //Whenever the player presses the jump key, check to jump
         //if the player, presses space, is ready to jump and grounded
-        if (Input.GetKey(jumpKey) && readyToJump && grounded){
+        if (Input.GetKey(jumpKey) && readyToJump && grounded) {
             readyToJump = false;
 
             //Jump
@@ -96,20 +107,34 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void MovePlayer(){
+    private void IsPlayerMoving(){
+        //We check to see if you player is pressing any inputs
+        //if inputs are pushed then the player is moving and needs to enter running state
+        //other wise return to idle state
+        if (horizontalInput != 0f || verticalInput != 0f){
+            print("player is running");
+            animator.SetBool("IsRunning", true);
+        }else if (horizontalInput == 0f && verticalInput == 0f){
+            print("player isnt running");
+            animator.SetBool("IsRunning", false);
+        }
+    }
+
+    private void MovePlayer() {
         //Again calculating the players input direction like we did
         //In the cam script
-        inputDir = orientation.forward* verticalInput + orientation.right * horizontalInput;
+        inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         //If grounded, adds force in the direction the player is facing
-        if (grounded){
+        if (grounded) {
             rb.AddForce(inputDir.normalized * moveSpeed * 10f, ForceMode.Force);
         }//If were not grounded, do the same but multiply speed by our air multiplier
-        else if (!grounded){
+        else if (!grounded) {
             rb.AddForce(inputDir.normalized * moveSpeed * 10f * airMultipler, ForceMode.Force);
         }
 
     }
+
 
     private void SpeedControl(){
         //Checks the Current Objects flat velocity
