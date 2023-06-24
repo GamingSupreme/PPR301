@@ -15,7 +15,7 @@ public class Movement : MonoBehaviour
     //(Make sure to change the layer of the ground terrain to this layer)
     public LayerMask whatIsGround;
     //Used for checking whether the player can jump or not
-    bool grounded;
+    public bool grounded;
     //To help simulate proper movement
     public float groundDrag;
 
@@ -52,8 +52,6 @@ public class Movement : MonoBehaviour
     Rigidbody rb;
 
     private void Start() {
-        animator = GetComponent<Animator>();
-
         //On scene start we reference this objects rigid body to out variable
         //and freeze its rotation
         rb = GetComponent<Rigidbody>();
@@ -81,6 +79,10 @@ public class Movement : MonoBehaviour
         } else {
             rb.drag = 0;
         }
+        
+        //Function to check jump
+        CheckJump();
+
     }
 
     private void FixedUpdate()
@@ -104,6 +106,20 @@ public class Movement : MonoBehaviour
 
             //Then start a cooldown which will set ready to jump back to true once reaching zero
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+    }
+
+    private void CheckJump(){
+        //if the grounded variable is set to true
+        if (grounded == true)
+        {
+            //set the animator variable to false meaning the player doesnt play the jump animation
+            animator.SetBool("IsJumping", false);
+        }
+        else
+        {
+            //set the animator variable to false meaning the player does play the jump animation
+            animator.SetBool("IsJumping", true);
         }
     }
 
@@ -152,7 +168,7 @@ public class Movement : MonoBehaviour
     private void Jump(){
         //Reset y velocity whenever going to make a jump
         //So the jump is always the same and accurate
-        Debug.Log("Attempted Jump");
+       
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
