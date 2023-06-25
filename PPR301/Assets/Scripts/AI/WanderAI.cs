@@ -14,11 +14,14 @@ public class WanderAI : MonoBehaviour
     private bool isRotatingRight = false;
     private bool isWalking = false;
 
+    //Set a variable for the animator
+    public Animator animator;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,7 @@ public class WanderAI : MonoBehaviour
             
             // Idiot proofing so that the wander and chase Coroutines conflicts
             isWalking = false;
+            isWandering = false;
             isWandering = false;
             isRotatingRight = false;
             isRotatingLeft = false;
@@ -55,6 +59,7 @@ public class WanderAI : MonoBehaviour
 
         if (isWalking == true)
         {
+            
             transform.position += transform.forward * wanderSpeed * Time.deltaTime;
         }
     }
@@ -76,18 +81,20 @@ public class WanderAI : MonoBehaviour
         //how long before ai will walk for for
         int walkTime = Random.Range(1, 5);
 
-            isWandering = true;
+           isWandering = true;
 
         //will take the random number and wait that many seconds
         yield return new WaitForSeconds(walkWait);
 
             isWalking = true;
+            animator.SetBool("EnemyWalking", true);
 
         //will walk for the given amount of random seconds
         yield return new WaitForSeconds(walkTime);
 
             // AI has stoped walking
             isWalking = false;
+            animator.SetBool("EnemyWalking", false);
 
         yield return new WaitForSeconds(rotateWait);
 

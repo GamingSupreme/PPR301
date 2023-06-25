@@ -19,34 +19,47 @@ public class CharacterManager : MonoBehaviour
     //Set a variable for the animator
     public Animator animator;
 
+    //make a reference for when the player is attacking
+    private bool attacking = false;
+
 
     void Start()
     {
+        //make the sword variable reference the sword object
         weapon = GameObject.Find("Sword");
     }
 
     // Update is called once per frame
     void Update()
     {
+        //check for player attemping to attack
         StartCoroutine(AttempAttack());
     }
 
     private IEnumerator AttempAttack(){
         //Check for player Input
-        if (Input.GetKey(Attack))
+        if (Input.GetKey(Attack) && attacking == false)
         {
+            //if weve entered the loop it means weve started attacking
+            //and dont want to be able to enter again before we finish the loop
+            attacking = true;
+
             //Enable Swords collision box
             animator.SetBool("IsAttacking", true);
-            yield return new WaitForSeconds(0.25f);
+            //wait for the animation to get to about the middle swing then enable sword hitbox (collision detection)
+            yield return new WaitForSeconds(0.10f);
             weapon.GetComponent<BoxCollider>().enabled = true;
 
+            // wait till the animation is done
+            yield return new WaitForSeconds(0.20f);
 
-            yield return new WaitForSeconds(0.35f);
-
+            //once the animation is done tell the animator to swap back from attacking
             animator.SetBool("IsAttacking", false);
+            //disable the sword hitbox so you cant just run into enemies and hit them
             weapon.GetComponent<BoxCollider>().enabled = false;
-
-            //play attack animation of sword
+            //then give some delay before we can swing again
+            yield return new WaitForSeconds(0.1f);
+            attacking = false;
         }
     }
 }

@@ -14,6 +14,9 @@ public class EnemyManager : MonoBehaviour
     //check his attacked state
     bool hasTakenDamage = false;
 
+    //reference the wave spawner
+    public WaveSpawner waveSpawner;
+
     //Enemy health variable
     public TextMeshPro healthText;
 
@@ -34,7 +37,7 @@ public class EnemyManager : MonoBehaviour
             eHealth -= 10;
             //disable the players hitbox for sword so double hit doesnt occur
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             hasTakenDamage = false;
 
         }
@@ -44,8 +47,11 @@ public class EnemyManager : MonoBehaviour
         //checks if the enemies health has reached zero
         if (eHealth <= 0)
         {
+            //reference the wave spawner and make sure to tell it an enemy has been killed
+            waveSpawner.EnemyKilled();
             //if it has destroy the enemy
             Destroy(this.gameObject);
+            
         }
     }
 
