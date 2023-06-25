@@ -37,7 +37,7 @@ public class EnemyManager : MonoBehaviour
             eHealth -= 10;
             //disable the players hitbox for sword so double hit doesnt occur
             collision.gameObject.GetComponent<BoxCollider>().enabled = false;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
             hasTakenDamage = false;
 
         }
