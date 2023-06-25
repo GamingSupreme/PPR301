@@ -18,11 +18,14 @@ public class WanderAI : MonoBehaviour
     public Animator animator;
 
     public Transform player; // Reference to the player's transform
-    private float distance; // Distance between enemy and player
+    public float distanceFromPlayer; // Distance between enemy and player
     private float direction; // Direction from enemy to player in degrees
     private Quaternion targetRotation; // Target rotation to face the player
     private float movementSpeed = 3f; // Movement speed of the enemy
-    private float stoppingDistance = 1.5f; // Distance to stop from the player
+    public float stoppingDistance = 1.5f; // Distance to stop from the player
+
+    public GameObject weapon;
+    bool attacking = false;
 
 
     // Start is called before the first frame update
@@ -34,6 +37,8 @@ public class WanderAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateDistance();
+
         // Will only allow AI to Wander if AI doesn't see the player and is not wandering at the moment
         if (isWandering == false && fieldOfView_Script.canSeePlayer == false)
         {
@@ -75,68 +80,85 @@ public class WanderAI : MonoBehaviour
 
     IEnumerator Wander()
     {
-        // this is for howlong the ai will rotate for
-        int rotationTime = Random.Range(1, 3);
+        if (distanceFromPlayer < stoppingDistance)
+        {
 
-        // the amount of time between rotations
-        int rotateWait = Random.Range(3, 4);
 
-        //randomly picks if ai will rotate left or right
-        int rotate_L_or_R = Random.Range(1, 2);
+            // this is for howlong the ai will rotate for
+            int rotationTime = Random.Range(1, 3);
 
-        //how long ai will wait before walk again
-        int walkWait = Random.Range(1, 4);
+            // the amount of time between rotations
+            int rotateWait = Random.Range(3, 4);
 
-        //how long before ai will walk for for
-        int walkTime = Random.Range(1, 5);
+            //randomly picks if ai will rotate left or right
+            int rotate_L_or_R = Random.Range(1, 2);
 
-           isWandering = true;
+            //how long ai will wait before walk again
+            int walkWait = Random.Range(1, 4);
 
-        //will take the random number and wait that many seconds
-        yield return new WaitForSeconds(walkWait);
+            //how long before ai will walk for for
+            int walkTime = Random.Range(1, 5);
+
+            isWandering = true;
+
+            //will take the random number and wait that many seconds
+            yield return new WaitForSeconds(walkWait);
 
             isWalking = true;
-            animator.SetBool("EnemyWalking", true);
+            
 
-        //will walk for the given amount of random seconds
-        yield return new WaitForSeconds(walkTime);
+            //will walk for the given amount of random seconds
+            yield return new WaitForSeconds(walkTime);
 
             // AI has stoped walking
             isWalking = false;
             animator.SetBool("EnemyWalking", false);
 
-        yield return new WaitForSeconds(rotateWait);
+            yield return new WaitForSeconds(rotateWait);
 
-        // if LorR == 1 (rotate Right)
-        // if LorR == 2 (rotate Left)
-        if (rotate_L_or_R == 1)
-        {
-            isRotatingRight = true;
-            yield return new WaitForSeconds(rotationTime);
-            isRotatingRight = false;
-        }
-        else if (rotate_L_or_R == 2)
-        {
-            isRotatingLeft = true;
-            yield return new WaitForSeconds(rotationTime);
-            isRotatingLeft = false;
-        }
+            // if LorR == 1 (rotate Right)
+            // if LorR == 2 (rotate Left)
+            if (rotate_L_or_R == 1)
+            {
+                isRotatingRight = true;
+                yield return new WaitForSeconds(rotationTime);
+                isRotatingRight = false;
+            }
+            else if (rotate_L_or_R == 2)
+            {
+                isRotatingLeft = true;
+                yield return new WaitForSeconds(rotationTime);
+                isRotatingLeft = false;
+            }
 
-        //Enemy AI has finnished wandering cycle
-        isWandering = false;
+            //Enemy AI has finnished wandering cycle
+            isWandering = false;
+        }
     }
 
     IEnumerator ChasePlayer()
     {
-
-        CalculateDistance();
         CalculateDirection();
 
         RotateTowardsPlayer();
 
-        if (distance > stoppingDistance)
+        if (distanceFromPlayer > stoppingDistance)
         {
             MoveTowardsPlayer();
+            if (attacking == true)
+            {
+                //once the animation is done tell the animator to swap back from attacking
+                animator.SetBool("EnemyAttacking", false);
+                //disable the sword hitbox so you cant just run into enemies and hit them
+                
+                //then give some delay before we can swing again
+                yield return new WaitForSeconds(0.2f);
+                attacking = false;
+            }
+            
+        }
+        else if(distanceFromPlayer < stoppingDistance && !attacking){
+            StartCoroutine(AttckPlayer());
         }
         
         yield return 0;
@@ -145,8 +167,8 @@ public class WanderAI : MonoBehaviour
     void CalculateDistance()
     {
         // Calculate distance between enemy and player
-        distance = Vector3.Distance(transform.position, player.position);
-        Debug.Log("Distance = " + distance);
+        distanceFromPlayer = Vector3.Distance(transform.position, player.position);
+        //Debug.Log("Distance = " + distance);
     }
 
     void CalculateDirection()
@@ -154,7 +176,7 @@ public class WanderAI : MonoBehaviour
         // Calculate direction from enemy to player in degrees
         Vector3 directionVector = (player.position - transform.position).normalized;
         direction = Mathf.Atan2(directionVector.x, directionVector.z) * Mathf.Rad2Deg;
-        Debug.Log("Direction = " + direction);
+        //Debug.Log("Direction = " + direction);
     }
     void RotateTowardsPlayer()
     {
@@ -167,6 +189,21 @@ public class WanderAI : MonoBehaviour
     {
         // Move the enemy towards the player
         transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+        animator.SetBool("EnemyWalking", true);
+    }
+
+    private IEnumerator AttckPlayer(){
+        //if weve entered the loop it means weve started attacking
+        //and dont want to be able to enter again before we finish the loop
+        attacking = true;
+
+        //Enable Swords collision box
+        animator.SetBool("EnemyAttacking", true);
+        //wait for the animation to get to about the middle swing then enable sword hitbox (collision detection)
+        yield return new WaitForSeconds(0.2f);
+        weapon.GetComponent<BoxCollider>().enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        weapon.GetComponent<BoxCollider>().enabled = false;
     }
 }
 

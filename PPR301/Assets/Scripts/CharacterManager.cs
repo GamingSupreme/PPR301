@@ -22,6 +22,9 @@ public class CharacterManager : MonoBehaviour
     //make a reference for when the player is attacking
     private bool attacking = false;
 
+    //
+    private bool hasTakenDamage = false;
+
 
     void Start()
     {
@@ -60,6 +63,22 @@ public class CharacterManager : MonoBehaviour
             //then give some delay before we can swing again
             yield return new WaitForSeconds(0.2f);
             attacking = false;
+        }
+    }
+
+    private IEnumerator OnTriggerEnter(Collider collision)
+    {
+        //If whatever the enemy has collided with is a weapon
+        if (collision.gameObject.CompareTag("Weapon") && (hasTakenDamage == false))
+        {
+            //deal damage to the enemies health and make sure the enemy has taken damage state
+            hasTakenDamage = true;
+            cHealth -= 40;
+            //disable the players hitbox for sword so double hit doesnt occur
+            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+            yield return new WaitForSeconds(1f);
+            hasTakenDamage = false;
+
         }
     }
 }
