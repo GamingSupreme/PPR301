@@ -13,7 +13,7 @@ public class WaveSpawner : MonoBehaviour
     public float timeBetweenWave = 2f;
 
     //The actual wave were on
-    private float waveNumber = 1;
+    public float waveNumber = 1;
     //Countdown before we start next wave
     private float countdownTimer = 0f;
     //Track enemies alive

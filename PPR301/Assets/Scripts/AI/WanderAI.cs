@@ -21,7 +21,7 @@ public class WanderAI : MonoBehaviour
     public float distanceFromPlayer; // Distance between enemy and player
     private float direction; // Direction from enemy to player in degrees
     private Quaternion targetRotation; // Target rotation to face the player
-    private float movementSpeed = 3f; // Movement speed of the enemy
+    private float movementSpeed = 5f; // Movement speed of the enemy
     public float stoppingDistance = 1.5f; // Distance to stop from the player
 
     public GameObject weapon;
@@ -31,7 +31,7 @@ public class WanderAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = this.gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame

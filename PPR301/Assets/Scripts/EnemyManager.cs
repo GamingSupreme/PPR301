@@ -10,12 +10,16 @@ public class EnemyManager : MonoBehaviour
     //Set some basic stats such as health, stamina ect
     public float eHealth = 30f;
     public float eStamina = 100f;
+    public int playerScore = 0;
 
     //check his attacked state
     bool hasTakenDamage = false;
 
     //reference the wave spawner
     public WaveSpawner waveSpawner;
+
+    //Reference game manager
+    public OurGameManager gameManager;
 
     //Enemy health variable
     public TextMeshPro healthText;
@@ -49,6 +53,7 @@ public class EnemyManager : MonoBehaviour
         {
             //reference the wave spawner and make sure to tell it an enemy has been killed
             waveSpawner.EnemyKilled();
+            gameManager.AddPoints();
             //if it has destroy the enemy
             Destroy(this.gameObject);
             
