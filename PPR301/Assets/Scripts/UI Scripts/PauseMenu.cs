@@ -35,6 +35,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         healthUI.SetActive(true);
 
+        //Make Cursor invisible as we will be adding a reticle later on
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         // resumes the game speed back to normal
         Time.timeScale = 1;
         GameIsPaused = false;
@@ -45,6 +49,10 @@ public class PauseMenu : MonoBehaviour
         //closes the menuUI and brings up the heathUI
         pauseMenuUI.SetActive(true);
         healthUI.SetActive(false);
+
+        //Make Cursor visable as well as being able to move it around the screen
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         // freezes the game and sets bool to say that the game is paused
         Time.timeScale = 0;

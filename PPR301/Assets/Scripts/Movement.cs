@@ -49,14 +49,14 @@ public class Movement : MonoBehaviour
     //Reference the players direction
     Vector3 inputDir;
     //reference players rigidbody
-    Rigidbody rb;
+    public Rigidbody rb;
 
     private void Start() {
         animator = GetComponent<Animator>();
 
         //On scene start we reference this objects rigid body to out variable
         //and freeze its rotation
-        rb = GetComponent<Rigidbody>();
+        
         rb.freezeRotation = true;
     }
 

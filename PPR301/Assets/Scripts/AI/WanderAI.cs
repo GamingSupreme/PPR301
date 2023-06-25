@@ -17,6 +17,13 @@ public class WanderAI : MonoBehaviour
     //Set a variable for the animator
     public Animator animator;
 
+    public Transform player; // Reference to the player's transform
+    private float distance; // Distance between enemy and player
+    private float direction; // Direction from enemy to player in degrees
+    private Quaternion targetRotation; // Target rotation to face the player
+    private float movementSpeed = 3f; // Movement speed of the enemy
+    private float stoppingDistance = 1.5f; // Distance to stop from the player
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +37,7 @@ public class WanderAI : MonoBehaviour
         // Will only allow AI to Wander if AI doesn't see the player and is not wandering at the moment
         if (isWandering == false && fieldOfView_Script.canSeePlayer == false)
         {
+            StopCoroutine(ChasePlayer());
             StartCoroutine(Wander());
         }
         else if (fieldOfView_Script.canSeePlayer == true)
@@ -42,7 +50,8 @@ public class WanderAI : MonoBehaviour
             isWandering = false;
             isRotatingRight = false;
             isRotatingLeft = false;
-            
+
+            StartCoroutine(ChasePlayer());
             //TODO: StartCoroutine(ChasePlayer());
             //Enemy will chase player
 
@@ -116,4 +125,48 @@ public class WanderAI : MonoBehaviour
         //Enemy AI has finnished wandering cycle
         isWandering = false;
     }
+
+    IEnumerator ChasePlayer()
+    {
+
+        CalculateDistance();
+        CalculateDirection();
+
+        RotateTowardsPlayer();
+
+        if (distance > stoppingDistance)
+        {
+            MoveTowardsPlayer();
+        }
+        
+        yield return 0;
+    }
+
+    void CalculateDistance()
+    {
+        // Calculate distance between enemy and player
+        distance = Vector3.Distance(transform.position, player.position);
+        Debug.Log("Distance = " + distance);
+    }
+
+    void CalculateDirection()
+    {
+        // Calculate direction from enemy to player in degrees
+        Vector3 directionVector = (player.position - transform.position).normalized;
+        direction = Mathf.Atan2(directionVector.x, directionVector.z) * Mathf.Rad2Deg;
+        Debug.Log("Direction = " + direction);
+    }
+    void RotateTowardsPlayer()
+    {
+        // Rotate the enemy towards the player
+        targetRotation = Quaternion.Euler(0f, direction, 0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    void MoveTowardsPlayer()
+    {
+        // Move the enemy towards the player
+        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+    }
 }
+

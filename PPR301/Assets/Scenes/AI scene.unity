@@ -925,7 +925,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &1039527706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -984,7 +984,7 @@ RectTransform:
   m_Children:
   - {fileID: 1543945821}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &1170760006
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1437,6 +1437,7 @@ MonoBehaviour:
   fieldOfView_Script: {fileID: 1464621853}
   wanderSpeed: 3
   rotationSpeed: 100
+  animator: {fileID: 0}
 --- !u!1 &1543945820
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1659,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033698903
 GameObject:
