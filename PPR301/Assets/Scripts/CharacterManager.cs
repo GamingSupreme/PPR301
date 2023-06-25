@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -35,6 +36,8 @@ public class CharacterManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //check if player has died
+        PlayerDead();
         //check for player attemping to attack
         StartCoroutine(AttempAttack());
     }
@@ -63,6 +66,15 @@ public class CharacterManager : MonoBehaviour
             //then give some delay before we can swing again
             yield return new WaitForSeconds(0.2f);
             attacking = false;
+        }
+    }
+
+    private void PlayerDead(){
+        //if players health is below 0 he has died and need to be brought to the death screen
+        if (cHealth <= 0){
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            SceneManager.LoadScene("Death Screen");
         }
     }
 

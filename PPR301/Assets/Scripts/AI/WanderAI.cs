@@ -80,7 +80,7 @@ public class WanderAI : MonoBehaviour
 
     IEnumerator Wander()
     {
-        if (distanceFromPlayer < stoppingDistance)
+        if (distanceFromPlayer > stoppingDistance)
         {
 
 
