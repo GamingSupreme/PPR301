@@ -11,6 +11,9 @@ public class EnemyManager : MonoBehaviour
     public float eHealth = 30f;
     public float eStamina = 100f;
 
+    //check his attacked state
+    bool hasTakenDamage = false;
+
     //Enemy health variable
     public TextMeshPro healthText;
 
@@ -19,16 +22,21 @@ public class EnemyManager : MonoBehaviour
         //Checks if the enemies health reaches 0
         CheckForEnemy();
         UpdateHealthText();
-
     }
 
     //Check weather the enemy has been collided with
-    private void OnTriggerEnter(Collider collision)
+    private IEnumerator OnTriggerEnter(Collider collision)
 {
         //If whatever the enemy has collided with is a weapon
-        if (collision.gameObject.CompareTag("Weapon")){
-            //deal damage to the enemies health
+        if (collision.gameObject.CompareTag("Weapon") && (hasTakenDamage == false)){
+            //deal damage to the enemies health and make sure the enemy has taken damage state
+            hasTakenDamage = true;
             eHealth -= 10;
+            //disable the players hitbox for sword so double hit doesnt occur
+            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+            yield return new WaitForSeconds(1.5f);
+            hasTakenDamage = false;
+
         }
     }
 
