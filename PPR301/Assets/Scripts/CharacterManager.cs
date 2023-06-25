@@ -47,7 +47,7 @@ public class CharacterManager : MonoBehaviour
             //Enable Swords collision box
             animator.SetBool("IsAttacking", true);
             //wait for the animation to get to about the middle swing then enable sword hitbox (collision detection)
-            yield return new WaitForSeconds(0.10f);
+            yield return new WaitForSeconds(0.15f);
             weapon.GetComponent<BoxCollider>().enabled = true;
 
             // wait till the animation is done
@@ -58,7 +58,7 @@ public class CharacterManager : MonoBehaviour
             //disable the sword hitbox so you cant just run into enemies and hit them
             weapon.GetComponent<BoxCollider>().enabled = false;
             //then give some delay before we can swing again
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             attacking = false;
         }
     }

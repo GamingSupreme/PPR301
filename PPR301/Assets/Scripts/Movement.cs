@@ -52,7 +52,6 @@ public class Movement : MonoBehaviour
     public Rigidbody rb;
 
     private void Start() {
-        animator = GetComponent<Animator>();
 
         //On scene start we reference this objects rigid body to out variable
         //and freeze its rotation
@@ -70,6 +69,12 @@ public class Movement : MonoBehaviour
 
         //Make sure to be checking for player input on every update frame
         PlayerInput();
+
+        if (grounded){
+            animator.SetBool("IsJumping", false);
+        }else{
+            animator.SetBool("IsJumping", true);
+        }
 
         //Make sure to be always checking if the player is reaching max speed
         SpeedControl();
@@ -97,11 +102,9 @@ public class Movement : MonoBehaviour
         //Whenever the player presses the jump key, check to jump
         //if the player, presses space, is ready to jump and grounded
         if (Input.GetKey(jumpKey) && readyToJump && grounded) {
-            readyToJump = false;
-
             //Jump
             Jump();
-
+            readyToJump = false;
             //Then start a cooldown which will set ready to jump back to true once reaching zero
             Invoke(nameof(ResetJump), jumpCooldown);
         }
