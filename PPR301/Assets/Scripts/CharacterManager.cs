@@ -16,6 +16,9 @@ public class CharacterManager : MonoBehaviour
     //Reference players weapon
     public GameObject weapon;
 
+    //Set a variable for the animator
+    public Animator animator;
+
 
     void Start()
     {
@@ -25,15 +28,23 @@ public class CharacterManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AttempAttack();
+        StartCoroutine(AttempAttack());
     }
 
-    private void AttempAttack(){
+    private IEnumerator AttempAttack(){
         //Check for player Input
         if (Input.GetKey(Attack))
         {
             //Enable Swords collision box
+            animator.SetBool("IsAttacking", true);
+            yield return new WaitForSeconds(0.25f);
             weapon.GetComponent<BoxCollider>().enabled = true;
+
+
+            yield return new WaitForSeconds(0.35f);
+
+            animator.SetBool("IsAttacking", false);
+            weapon.GetComponent<BoxCollider>().enabled = false;
 
             //play attack animation of sword
         }
