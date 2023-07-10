@@ -5,13 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Task 1/Scenes/MainMenu.unity
     guid: 9454150d5bbe31146bf7788f6cf1e453
-  - enabled: 1
+  - enabled: 0
     path: Assets/Task 1/Scenes/SampleScene 1.unity
     guid: 2642542c39ee2a24fba8157b3facd590
-  - enabled: 1
+  - enabled: 0
     path: Assets/Task 1/Scenes/Death Screen.unity
     guid: ec9d929eaf6474448a921cbda9f94321
+  - enabled: 1
+    path: Assets/Task 2/Scenes/Toots for new players.unity
+    guid: d451fa259b6535a4499d9de428facffc
+  - enabled: 1
+    path: Assets/Task 2/Scenes/Task 2 Playground.unity
+    guid: 0158758e4f5955f4c8abcc077e841126
   m_configObjects: {}

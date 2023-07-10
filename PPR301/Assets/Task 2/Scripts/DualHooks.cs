@@ -101,6 +101,8 @@ public class DualHooks : MonoBehaviour
         {
             if (Input.GetKeyDown(swingKey1)) StartGrapple(0);
             if (Input.GetKeyDown(swingKey2)) StartGrapple(1);
+
+
         }
         else
         {
@@ -172,6 +174,8 @@ public class DualHooks : MonoBehaviour
         CancelActiveGrapples();
         pm.ResetRestrictions();
 
+        FindObjectOfType<AudioManager>().Play("Grapple Sound Effect");
+
         pm.swinging = true;
         swingsActive[swingIndex] = true;
 
@@ -215,6 +219,8 @@ public class DualHooks : MonoBehaviour
         CancelActiveSwings();
         CancelAllGrapplesExcept(grappleIndex);
 
+        FindObjectOfType<AudioManager>().Play("Grapple Sound Effect");
+
         // Case 1 - target point found
         if (predictionHits[grappleIndex].point != Vector3.zero)
         {
@@ -234,6 +240,7 @@ public class DualHooks : MonoBehaviour
 
             StartCoroutine(StopGrapple(grappleIndex, grappleDelayTime));
         }
+
 
         lineRenderers[grappleIndex].positionCount = 2;
         currentGrapplePositions[grappleIndex] = gunTips[grappleIndex].position;
