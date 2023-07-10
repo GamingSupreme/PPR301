@@ -6,7 +6,7 @@ public class ExitGame : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown("Escape"))
+        if (Input.GetKeyDown("escape"))
         {
             Debug.Log("Game has been closed");
             //quits the game
