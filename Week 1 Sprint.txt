@@ -1,0 +1,37 @@
+Friday all day No
+Wednesday Morning No
+Thursday Night no 
+Monday to Friday after 4
+Sat Sun before 2
+
+
+Week 1:
+
+<<<<ART>>>>>
+Blockout of level design in Unity (Jack)
+Textures, More Grass variety and Plants/flowers (Jack or Josh?)
+Creating Stretchable Arms ( leave till end of week ) (mae)
+Rocks (Josh) 
+UI Design (Arists all)
+Sounds Collection (All Artists)
+More Enemy/ player design iterations
+Animations
+Ruin Designs
+Water
+
+<<<<PROGRAMMING>>>>
+Mid air dash (Josh)
+
+Sphere chasing player
+Sphere being chased by player
+Sphere collectible with UI prompt
+Boost, rechargeable 
+Grapple pulling/push items/enemies towards player
+Wall to perch/run
+Platforms with a timer that shakes it and falls after set amount of time cancelling grapple
+Enemy that cuts rope
+Enemies (health, damage system)
+Player slide that adds momentum 
+
+
+
