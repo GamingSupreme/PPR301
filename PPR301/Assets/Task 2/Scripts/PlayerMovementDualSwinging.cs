@@ -10,6 +10,7 @@ public class PlayerMovementDualSwinging : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
     public float swingSpeed;
+    public float dashSpeed;
 
     public float groundDrag;
 
@@ -53,11 +54,12 @@ public class PlayerMovementDualSwinging : MonoBehaviour
         swinging,
         walking,
         sprinting,
-        air
+        air,
+        dashing
     }
 
     public bool freeze;
-
+    public bool dashing;
     public bool activeGrapple;
     public bool swinging;
 
@@ -79,8 +81,11 @@ public class PlayerMovementDualSwinging : MonoBehaviour
         StateHandler();
 
         // handle drag
-        if (grounded && !activeGrapple)
-            rb.drag = groundDrag;
+        if (grounded && !activeGrapple){
+            if (state == MovementState.walking || state == MovementState.sprinting){
+                rb.drag = groundDrag;
+            }
+        }  
         else
             rb.drag = 0;
     }
@@ -108,8 +113,16 @@ public class PlayerMovementDualSwinging : MonoBehaviour
 
     private void StateHandler()
     {
+        //if we start to dash
+        if (dashing){ 
+            //enter dash state
+            state = MovementState.dashing;
+            //and set our movespeed to our dash speed
+            moveSpeed = dashSpeed;
+        }
+
         // Mode - Freeze
-        if (freeze)
+        else if (freeze)
         {
             state = MovementState.freeze;
             moveSpeed = 0;
