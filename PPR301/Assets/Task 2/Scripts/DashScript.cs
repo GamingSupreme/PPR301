@@ -9,7 +9,7 @@ public class DashScript : MonoBehaviour
     public Transform orientatoin;
     public Transform playerCam;
     private Rigidbody rb;
-    private PlayerMovementDualSwinging pm;
+    private PlayerMovement pm;
 
     [Header("Dash Variables")]
     //Variables to help control and refine the dash
@@ -38,7 +38,7 @@ public class DashScript : MonoBehaviour
     private void Start(){
         //referencing the players rigidbody and movement script
         rb = GetComponent<Rigidbody>();
-        pm = GetComponent<PlayerMovementDualSwinging>();
+        pm = GetComponent<PlayerMovement>();
     }
 
     private void Dash(){
