@@ -209,6 +209,4 @@ public class PlayerMovement : MonoBehaviour
 
         return velocityXZ + velocityY;
     }
-
-
 }

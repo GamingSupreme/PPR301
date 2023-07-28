@@ -5,29 +5,28 @@ using UnityEngine;
 public class EnemyAi : MonoBehaviour
 {
     [Header("AI Variables")]
-    //reference to player
-    public Transform targetObject;
-    //Enemy move speed
+    public Transform targetObject; // Reference to ObjectB
     public float moveSpeed = 2f;
-    //How intense the bob will be
     public float bobbingAmplitude = 0.5f;
-    //how often the enemy will bob
-    public float bobbingFrequency = 1f;
-    private float startingY;
+    public float bobbingFrequency = 1f; // Adjust this to control the speed of bobbing
+
+    private Vector3 startingPosition;
 
     private void Start(){
-        startingY = transform.position.y;
+        startingPosition = transform.position;
     }
 
     private void Update(){
-        // Move towards Player
-        Vector3 targetPosition = new Vector3(targetObject.position.x, startingY, targetObject.position.z);
+        // Move towards ObjectB in the XZ plane
+        Vector3 targetPosition = new Vector3(targetObject.position.x, startingPosition.y, targetObject.position.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
 
-        // Calculate bobbing effect
+        // Update Y position to follow ObjectB's Y position
         float bobbingOffset = bobbingAmplitude * Mathf.Sin(Time.time * bobbingFrequency);
         Vector3 newPosition = transform.position;
-        newPosition.y = startingY + bobbingOffset;
+        newPosition.y = targetObject.position.y + bobbingOffset;
         transform.position = newPosition;
     }
 }
+
+
