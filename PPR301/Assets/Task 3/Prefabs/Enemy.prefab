@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 311638710799140606}
   - component: {fileID: 311638710799140607}
   - component: {fileID: 311638710799140602}
+  - component: {fileID: 1019745756768688351}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -111,10 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c041497ed276beb469e7d19d225acc27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  movementSpeed: 6
-  bobbingSpeed: 2
-  bobbingHeight: 0.5
+  targetObject: {fileID: 0}
+  moveSpeed: 6
+  bobbingAmplitude: 0.5
+  bobbingFrequency: 1
 --- !u!114 &311638710799140602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,3 +129,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
+--- !u!54 &1019745756768688351
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311638710799140592}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
