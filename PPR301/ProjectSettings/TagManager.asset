@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Weapon
+  - collectable1
+  - collectable2
+  - collectable3
+  - collectable4
+  - collectable5
   layers:
   - Default
   - TransparentFX
