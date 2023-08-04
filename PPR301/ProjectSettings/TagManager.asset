@@ -12,6 +12,7 @@ TagManager:
   - collectable4
   - collectable5
   - portal
+  - portalPlane
   layers:
   - Default
   - TransparentFX
