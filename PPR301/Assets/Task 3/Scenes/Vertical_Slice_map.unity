@@ -6930,6 +6930,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1503766149200402111, guid: 0e4f62fa3501391408e563290fe5019c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e3243a1db3fb4d54e80b2662943cda93, type: 2}
     - target: {fileID: 919132149155446097, guid: 0e4f62fa3501391408e563290fe5019c, type: 3}
       propertyPath: m_Name
       value: TreeBig_Low
@@ -10528,6 +10532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046275453}
   - component: {fileID: 1046275452}
+  - component: {fileID: 1046275454}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -10612,6 +10617,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &1046275454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046275451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &1047633994
 PrefabInstance:
   m_ObjectHideFlags: 0
