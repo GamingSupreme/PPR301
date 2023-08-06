@@ -4,16 +4,49 @@ using UnityEngine;
 
 public class CollectableCount : MonoBehaviour
 {
+    [Header("Protal Relics")]
+    public GameObject[] protalRelicArray = new GameObject[5];
+
+
     [Header("Collectables")]
-    public bool collectable1 = false;
-    public bool collectable2 = false;
-    public bool collectable3 = false;
-    public bool collectable4 = false;
-    public bool collectable5 = false;
+    public bool[] collectablesArray = new bool[5];
+    public string[] collectableTags = new string[5];
+
+    private void Start()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            string tempCounter = (i + 1).ToString();
+            string tagNameInput = "collectable" + tempCounter;
+            collectableTags[i] = tagNameInput;
+
+            Debug.Log(collectableTags[i]);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            collectablesArray[i] = false;
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
         //Check if the player has collided with a collectable
+        for (int i = 0; i < 5; i++)
+        {
+            if (collision.gameObject.tag == collectableTags[i])
+            {
+                //If they collide, tick the collectable
+                collectablesArray[i] = true;
+                Destroy(collision.gameObject);
+                protalRelicArray[i].SetActive(true);
+            }
+        }
+        
+    }
+}
+
+/*
         if (collision.gameObject.tag == "collectable1")
         {
             //If they collide, tick the collectable
@@ -44,5 +77,4 @@ public class CollectableCount : MonoBehaviour
             collectable5 = true;
             Destroy(collision.gameObject);
         }
-    }
-}
+        */
