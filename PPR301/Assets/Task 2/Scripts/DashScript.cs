@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DashScript : MonoBehaviour
@@ -21,6 +22,8 @@ public class DashScript : MonoBehaviour
     //variables to control the cooldown of the dash
     public float dashCooldown;
     private float dashCooldownTimer;
+    //TextMeshPro variable
+    public TMP_Text dashCDDisplay;
 
     [Header("Inputs")]
     //Variable to set the ket needed to dash
@@ -32,7 +35,17 @@ public class DashScript : MonoBehaviour
         }
 
         if (dashCooldownTimer > 0)
+        {
+            
+            if (dashCooldownTimer <= 0.01){
+                dashCDDisplay.text = "Dash Ready";
+            }
+            else{
+                dashCDDisplay.text = "Dash Cooldown: " + dashCooldownTimer.ToString("f2");
+            }
             dashCooldownTimer -= Time.deltaTime;
+        }
+            
     }
 
     private void Start(){
