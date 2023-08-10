@@ -69,9 +69,9 @@ Material:
     - _Density: 5
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Strength: 10.14
-    - _dissolve_amount: 0.3
-    - _speed: 0.5
+    - _Strength: 15
+    - _dissolve_amount: 2.2
+    - _speed: 0.1
     m_Colors:
-    - _Color: {r: 2.6501722, g: 38.937145, b: 0.8154376, a: 0}
+    - _Color: {r: 0.81543684, g: 38.937145, b: 21.97926, a: 0}
   m_BuildTextureStacks: []
