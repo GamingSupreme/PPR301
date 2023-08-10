@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CamMovement : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class CamMovement : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(GetComponent<Camera>().fieldOfView.ToString());
         //we want to get the players mouse inputs in real time
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.fixedDeltaTime * sensX;
@@ -40,6 +42,12 @@ public class CamMovement : MonoBehaviour
         //then we rotate the player to match their proper direction
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
+
+    public void DoFOV(float endValue){
+        //reference the camera object and set its field of view to our value
+        GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
+    }
+
 }
 
 

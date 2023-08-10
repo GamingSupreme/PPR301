@@ -16,6 +16,11 @@ public class Grappling : MonoBehaviour
     //reference to line renderer
     public LineRenderer lr;
 
+    [Header("CameraEffects")]
+    public CamMovement playerCam;
+    public float grappleFOV;
+
+
     [Header("Grappling Variables")]
     //the max distance our grapple will travel
     public float maxGrappleDistance;
@@ -91,6 +96,7 @@ public class Grappling : MonoBehaviour
             //then we want to start executing out grapple but with some delay first
             //(maybe play an animation here?)
             Invoke(nameof(ExecuteGrapple), grappleDelayTime);
+            
         }else{
             print("RayCast Missed");
 
@@ -107,7 +113,7 @@ public class Grappling : MonoBehaviour
 
     private void ExecuteGrapple(){
         pm.freeze = false;
-
+        playerCam.DoFOV(grappleFOV);
         //calculates the lowest point of the player
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
@@ -140,6 +146,7 @@ public class Grappling : MonoBehaviour
 
         //once we finish grappling disable the line renderer
         lr.enabled = false;
+        playerCam.DoFOV(60f);
     }
 
     
