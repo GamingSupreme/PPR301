@@ -7,6 +7,6 @@ public class playerDead : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        SceneManager.LoadScene("Task 2 Playground");
+        SceneManager.LoadScene("Vertical_Slice_map");
     }
 }

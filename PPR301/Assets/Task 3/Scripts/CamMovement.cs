@@ -33,7 +33,7 @@ public class CamMovement : MonoBehaviour
 
         yRotation += mouseX;
         xRotation -= mouseY;
-        
+
         //clamp the x rotation so the player cant look further than 90 degrees
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
@@ -43,9 +43,9 @@ public class CamMovement : MonoBehaviour
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
 
-    public void DoFOV(float endValue){
+    public void DoFOV(float endValue, float fovChangeTime){
         //reference the camera object and set its field of view to our value
-        GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
+        GetComponent<Camera>().DOFieldOfView(endValue, fovChangeTime);
     }
 
 }

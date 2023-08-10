@@ -95,6 +95,7 @@ public class Grappling : MonoBehaviour
 
             //then we want to start executing out grapple but with some delay first
             //(maybe play an animation here?)
+            playerCam.DoFOV(grappleFOV, 0.5f);
             Invoke(nameof(ExecuteGrapple), grappleDelayTime);
             
         }else{
@@ -112,8 +113,8 @@ public class Grappling : MonoBehaviour
     }
 
     private void ExecuteGrapple(){
+        
         pm.freeze = false;
-        playerCam.DoFOV(grappleFOV);
         //calculates the lowest point of the player
         Vector3 lowestPoint = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
 
@@ -146,7 +147,7 @@ public class Grappling : MonoBehaviour
 
         //once we finish grappling disable the line renderer
         lr.enabled = false;
-        playerCam.DoFOV(60f);
+        playerCam.DoFOV(60f, 0.25f);
     }
 
     
