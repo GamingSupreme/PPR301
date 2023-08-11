@@ -1140,7 +1140,7 @@ GameObject:
   - component: {fileID: 1988502868}
   - component: {fileID: 1988502867}
   m_Layer: 5
-  m_Name: 'Options '
+  m_Name: Well Done
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1163,8 +1163,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 546}
-  m_SizeDelta: {x: -1503.3511, y: -1327.6488}
+  m_AnchoredPosition: {x: 0, y: 484.01562}
+  m_SizeDelta: {x: -1503.3511, y: -1203.6803}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1988502867
 MonoBehaviour:
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Options
+  m_text: Thankyou for playing our demo.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
