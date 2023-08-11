@@ -13,7 +13,6 @@ public class EndLevel : MonoBehaviour
         {
             //If they collide, exit the scene
             Debug.Log("COLLIDED");
-            UnityEditor.EditorApplication.isPlaying = false;
             Application.Quit();
         }
     }
