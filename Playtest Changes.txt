@@ -1,0 +1,8 @@
+Game Test Josh Squared: 2 hrs
+
+Notes:
+
+UI Reticle indication for in-range grapibility 
+Line retracts after grapple, fully retracted means ready to grapple again
+Some slight in air movement (also test more)
+Mid Air Jump / double jump 
