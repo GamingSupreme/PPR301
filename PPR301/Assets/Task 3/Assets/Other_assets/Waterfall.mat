@@ -34,15 +34,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FadeStrength: -0.71
-    - _FoamBrightness: 6.07
+    - _FadeStrength: -0.65
+    - _FoamBrightness: -9.09
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RipplesAmount: 5
-    - _VoronoiScale: 7
+    - _RipplesAmount: 7.68
+    - _VoronoiScale: 78.5
     - _VoronoiSpeed: 1
     m_Colors:
-    - _RipplesColour: {r: 0.07450981, g: 0.6392157, b: 0.7372549, a: 0}
+    - _RipplesColour: {r: 0.43529415, g: 0.9058824, b: 0.94117653, a: 0}
     - _RipplesSpeed: {r: 0, g: -0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &885993314964339785
