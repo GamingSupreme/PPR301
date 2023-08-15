@@ -39,7 +39,7 @@ Material:
     - _NormalStrength: 2
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RippleScale: 5
+    - _RippleScale: 20
     - _RippleSpeed: 1
     - _RipplesDissolve: 5
     m_Colors:
