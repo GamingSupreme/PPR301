@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ground;
     public bool grounded;
 
+    [Header("Slope Handling")]
+    public float maxSlope;
+    private RaycastHit slopeHit;
+
 
     //Reference to our orientation
     public Transform orientation;
@@ -104,25 +108,41 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck(){
         //now we shoot a raycast from the players body down and if it collides with an object masked as ground were grounded
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);     
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
     }
 
     private void MovePlayer(){
         //if were grappling we dont want the player to mvoe
         if (activeGrapple) return;
-        if (activeSwinging) return;
         //first we need to calculate the direction the player wants to move in
         moveDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        //If grounded, adds force in the direction the player is facing
-        if (grounded)
+        //if were in an active swing i want to limit player movement to a lot smaller amount
+        if (activeSwinging)
         {
+            rb.AddForce(moveDir.normalized * 2f * 10f * airMultiplier, ForceMode.Force);
+            Debug.Log("Slow movements");
+            return;
+        }
+
+        // if on slope add force in direction of slope rather than forwards
+        else if (OnSLope()){
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 10f, ForceMode.Force);
+
+            if (rb.velocity.y > 0)
+                rb.AddForce(Vector3.down * 8f, ForceMode.Force);
+        }
+
+        //If grounded, adds force in the direction the player is facing
+        else if (grounded){
             rb.AddForce(moveDir.normalized * moveSpeed * 10f, ForceMode.Force);
         }//If were not grounded, do the same but multiply speed by our air multiplier
-        else if (!grounded)
-        {
+        else if (!grounded){
             rb.AddForce(moveDir.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
+
+        //turn off gravity on slopes
+        rb.useGravity = !OnSLope();
     }
 
     private void SpeedControl()
@@ -149,7 +169,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //Reset y velocity whenever going to make a jump
         //So the jump is always the same and accurate
-        Debug.Log("Attempted Jump");
 
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
@@ -188,6 +207,22 @@ public class PlayerMovement : MonoBehaviour
     void CurrentSpeed(){
         //update ui to dispplay current speed
         speedDisplay.text = "Current Speed: " + rb.velocity.magnitude.ToString("f2");
+    }
+
+    private bool OnSLope(){
+        //shoot a raycast down from the centre of the player and store the data of the object hit in the slopehit variable
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f)){
+            //create a new float and store a new vector three in it with the angle being the same of the object we hit
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            // if the angle is more than 0 and less than our max slope return it
+            return angle < maxSlope && angle != 0;
+        }
+        //otherwise return nothing
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection(){
+        return Vector3.ProjectOnPlane(moveDir, slopeHit.normal).normalized;
     }
 
     private void airMovement(){

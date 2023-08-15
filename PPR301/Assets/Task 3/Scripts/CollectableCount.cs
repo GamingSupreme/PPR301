@@ -19,8 +19,6 @@ public class CollectableCount : MonoBehaviour
             string tempCounter = (i + 1).ToString();
             string tagNameInput = "collectable" + tempCounter;
             collectableTags[i] = tagNameInput;
-
-            Debug.Log(collectableTags[i]);
         }
 
         for (int i = 0; i < 5; i++)
