@@ -1,16 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CollectableCount : MonoBehaviour
 {
+    public TextMeshProUGUI collectableCounter;
+
     [Header("Protal Relics")]
     public GameObject[] protalRelicArray = new GameObject[5];
+    public int numberOfRelicsRemaining = 5;
 
 
     [Header("Collectables")]
     public bool[] collectablesArray = new bool[5];
     public string[] collectableTags = new string[5];
+
 
     private void Start()
     {
@@ -25,6 +30,8 @@ public class CollectableCount : MonoBehaviour
         {
             collectablesArray[i] = false;
         }
+
+        collectableCounter.text = "Relics left: 5";
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,6 +45,9 @@ public class CollectableCount : MonoBehaviour
                 collectablesArray[i] = true;
                 Destroy(collision.gameObject);
                 protalRelicArray[i].SetActive(true);
+
+                numberOfRelicsRemaining--;
+                collectableCounter.text = "Relics left: "+ (numberOfRelicsRemaining.ToString());
             }
         }
         

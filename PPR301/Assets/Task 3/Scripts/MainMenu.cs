@@ -9,6 +9,8 @@ public class MainMenu : MonoBehaviour
     public GameObject StartPannel;
     public GameObject OptionsPannel;
 
+    
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Vertical_Slice_map");

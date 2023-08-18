@@ -16,6 +16,9 @@ public class CamMovement : MonoBehaviour
     float xRotation;
     float yRotation;
 
+    //pause menu
+    public GameObject pauseMenu;
+
     private void Start()
     {
         //when the game starts we want the cursor to be locked in the centre
@@ -26,6 +29,14 @@ public class CamMovement : MonoBehaviour
 
     private void Update()
     {
+        //checks to see if the pause menu is active
+        if (pauseMenu.activeInHierarchy)
+        {
+            //do nothing cause we don't want cam to move while in pause menu
+        }
+        else
+        {
+
         Debug.Log(GetComponent<Camera>().fieldOfView.ToString());
         //we want to get the players mouse inputs in real time
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.fixedDeltaTime * sensX;
@@ -41,6 +52,7 @@ public class CamMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         //then we rotate the player to match their proper direction
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 
     public void DoFOV(float endValue, float fovChangeTime){
