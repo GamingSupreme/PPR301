@@ -24,6 +24,7 @@ public class DashScript : MonoBehaviour
     private float dashCooldownTimer;
     //TextMeshPro variable
     public TMP_Text dashCDDisplay;
+    public TMP_Text livesDisplay;
 
     [Header("Inputs")]
     //Variable to set the ket needed to dash
@@ -45,6 +46,8 @@ public class DashScript : MonoBehaviour
             }
             dashCooldownTimer -= Time.deltaTime;
         }
+
+        livesDisplay.text = "Lives: " + pm.lives;
             
     }
 

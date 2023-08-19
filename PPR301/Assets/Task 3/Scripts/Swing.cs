@@ -89,7 +89,7 @@ public class Swing : MonoBehaviour
     private void StartSwing(){
         //when we swing set swinging to true
         pm.activeSwinging = true;
-
+        
         RaycastHit hit;
 
         //while swinging make sure we move at our swing speed and not move speed
@@ -100,6 +100,10 @@ public class Swing : MonoBehaviour
             //if we hit terrarian we want to
             //set our swing point to where the raycast hit
             swingPoint = hit.point;
+
+            //if we hit terrain reset double jump
+            pm.canDoubleJump = true;
+
             //add a joint to the player
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;

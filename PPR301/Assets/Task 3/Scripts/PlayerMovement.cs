@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Variables")]
     private float baseMoveSpeed = 7;
     public float moveSpeed;
+    //value for max speed we wish to travel at
+    public float maxSpeed = 12;
     public float dashSpeed;
     public float groundDrag;
 
@@ -15,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
 
     //How high player can jump
     public float jumpForce;
+    //double jump force for the air jump
+    public float doubleJumpForce;
     //jump cooldown
     public float jumpCooldown;
     //check for double jump
@@ -23,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     //checks if the player can jump
     bool readyToJump = true;
+    
 
     [Header("Keybinds")]
 
@@ -112,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         else if (Input.GetKeyDown(jumpKey) && canDoubleJump){
-            Jump();
+            DoubleJump();
             canDoubleJump = false;
         }
     }
@@ -166,11 +171,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 curVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         //if our current velocity if higher than out move speed then were going too fast
-        if (curVelocity.magnitude > moveSpeed)
-        {
+        if (curVelocity.magnitude > moveSpeed && grounded){
             moveSpeed = baseMoveSpeed;
             //so we calculate what out max should be
             Vector3 maxVelocity = curVelocity.normalized * moveSpeed;
+            //then we sent out current velocity to the max we would like it to go at
+            rb.velocity = new Vector3(maxVelocity.x, rb.velocity.y, maxVelocity.z);
+        }
+        if (curVelocity.magnitude > moveSpeed && !grounded){
+            moveSpeed = maxSpeed;
+            //so we calculate what out max should be
+            Vector3 maxVelocity = curVelocity.normalized * maxSpeed;
             //then we sent out current velocity to the max we would like it to go at
             rb.velocity = new Vector3(maxVelocity.x, rb.velocity.y, maxVelocity.z);
         }
@@ -185,6 +196,17 @@ public class PlayerMovement : MonoBehaviour
 
         //Apply force upwards on the player with our predetermined force
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void DoubleJump()
+    {
+        //Reset y velocity whenever going to make a jump
+        //So the jump is always the same and accurate
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        //Apply force upwards on the player with our predetermined force
+        rb.AddForce(transform.up * doubleJumpForce, ForceMode.Impulse);
     }
 
     private void ResetJump()
