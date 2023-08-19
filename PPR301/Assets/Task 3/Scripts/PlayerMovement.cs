@@ -11,10 +11,14 @@ public class PlayerMovement : MonoBehaviour
     public float dashSpeed;
     public float groundDrag;
 
+    public int lives = 3;
+
     //How high player can jump
     public float jumpForce;
     //jump cooldown
     public float jumpCooldown;
+    //check for double jump
+    public bool canDoubleJump = true;
     //bonus movespeed in the air
     public float airMultiplier;
     //checks if the player can jump
@@ -78,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = dashSpeed;
         }
 
+        if (grounded){
+            canDoubleJump = true;
+        }
         //if were grounded we need to apply ground drag to our movement
         if (grounded && !activeGrapple){
             rb.drag = groundDrag;
@@ -96,13 +103,17 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
-        {
+        if (Input.GetKeyDown(jumpKey) && readyToJump && grounded){
             //Jump
             Jump();
             readyToJump = false;
             //Then start a cooldown which will set ready to jump back to true once reaching zero
             Invoke(nameof(ResetJump), jumpCooldown);
+            return;
+        }
+        else if (Input.GetKeyDown(jumpKey) && canDoubleJump){
+            Jump();
+            canDoubleJump = false;
         }
     }
 
