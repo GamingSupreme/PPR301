@@ -41,6 +41,7 @@ public class CollectableCount : MonoBehaviour
         {
             if (collision.gameObject.tag == collectableTags[i])
             {
+                Debug.Log("I COLLIDED AND DESTROYED A COLLECTABLE");
                 //If they collide, tick the collectable
                 collectablesArray[i] = true;
                 Destroy(collision.gameObject);
