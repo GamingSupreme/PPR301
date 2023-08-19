@@ -14,7 +14,7 @@ public class PortatActivate : MonoBehaviour
         {
             Debug.Log("Portal Collided");
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 6; i++)
             {
                 if (cc.collectablesArray[i] == false)
                 {
@@ -26,8 +26,9 @@ public class PortatActivate : MonoBehaviour
             if (cc.collectablesArray[0] == true && 
                 cc.collectablesArray[1] == true && 
                 cc.collectablesArray[2] == true && 
-                cc.collectablesArray[3] == true && 
-                cc.collectablesArray[4] == true){
+                cc.collectablesArray[3] == true &&
+                cc.collectablesArray[4] == true &&
+                cc.collectablesArray[5] == true){
                 portalPlane.gameObject.SetActive(true);
             }
         }

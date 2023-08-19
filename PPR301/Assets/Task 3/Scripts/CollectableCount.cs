@@ -8,36 +8,36 @@ public class CollectableCount : MonoBehaviour
     public TextMeshProUGUI collectableCounter;
 
     [Header("Protal Relics")]
-    public GameObject[] protalRelicArray = new GameObject[5];
-    public int numberOfRelicsRemaining = 5;
+    public GameObject[] protalRelicArray = new GameObject[6];
+    public int numberOfRelicsRemaining = 6;
 
 
     [Header("Collectables")]
-    public bool[] collectablesArray = new bool[5];
-    public string[] collectableTags = new string[5];
+    public bool[] collectablesArray = new bool[6];
+    public string[] collectableTags = new string[6];
 
 
     private void Start()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             string tempCounter = (i + 1).ToString();
             string tagNameInput = "collectable" + tempCounter;
             collectableTags[i] = tagNameInput;
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             collectablesArray[i] = false;
         }
 
-        collectableCounter.text = "Relics left: 5";
+        collectableCounter.text = "Relics left: 6";
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         //Check if the player has collided with a collectable
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (collision.gameObject.tag == collectableTags[i])
             {
