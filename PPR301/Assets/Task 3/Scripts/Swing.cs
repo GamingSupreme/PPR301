@@ -70,7 +70,6 @@ public class Swing : MonoBehaviour
             pm.activeSwinging = false;
         else{
             currentAirTime += Time.deltaTime;
-            currentAirTimeDisplay.text = "Current Air Time: " + currentAirTime.ToString("f2");
         }
             
     }
@@ -128,7 +127,5 @@ public class Swing : MonoBehaviour
         Destroy(joint);
         lastAirTime = currentAirTime;
         currentAirTime = 0;
-        currentAirTimeDisplay.text = "Current Air Time: " + currentAirTime.ToString("f2");
-        lastAirTimeDisplay.text = "Last Air Time: " + lastAirTime.ToString("f2") + "!";
     }    
 }
