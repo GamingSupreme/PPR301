@@ -21,7 +21,7 @@ public class DashScript : MonoBehaviour
     [Header("Cooldowns")]
     //variables to control the cooldown of the dash
     public float dashCooldown;
-    private float dashCooldownTimer;
+    public float dashCooldownTimer;
     //TextMeshPro variable
     public TMP_Text dashCDDisplay;
     public TMP_Text livesDisplay;
@@ -38,7 +38,7 @@ public class DashScript : MonoBehaviour
         if (dashCooldownTimer > 0)
         {
             
-            if (dashCooldownTimer <= 0.01){
+            if (dashCooldownTimer <= 0.1){
                 dashCDDisplay.text = "Dash Ready";
             }
             else{

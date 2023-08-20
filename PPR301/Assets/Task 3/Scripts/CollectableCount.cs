@@ -9,6 +9,8 @@ public class CollectableCount : MonoBehaviour
 
     [SerializeField] private Animator myAnimationController;
 
+    public GameObject UI;
+
     [Header("Cameras")]
     public GameObject playerCamera;
     public GameObject cutsceneCamera;
@@ -64,6 +66,7 @@ public class CollectableCount : MonoBehaviour
 
     IEnumerator PlayAnimation(int i)
     {
+        UI.SetActive(false);
         cutsceneCamera.SetActive(true);
         myAnimationController.SetBool("Play" + (i + 1).ToString(), true);
         playerCamera.SetActive(false);
@@ -72,7 +75,7 @@ public class CollectableCount : MonoBehaviour
         myAnimationController.SetBool("Play" + (i + 1).ToString(), false);
         playerCamera.SetActive(true);
         cutsceneCamera.SetActive(false);
-        
+        UI.SetActive(true);
     }
 
 }

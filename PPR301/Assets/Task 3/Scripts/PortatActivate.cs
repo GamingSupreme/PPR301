@@ -9,6 +9,8 @@ public class PortatActivate : MonoBehaviour
     public Transform portalPlane;
     bool collectedAll = false;
 
+    public GameObject UI;
+
     [SerializeField] private Animator myAnimationController;
 
     [Header("Cameras")]
@@ -44,6 +46,7 @@ public class PortatActivate : MonoBehaviour
     IEnumerator PlayAnimation()
     {
         yield return new WaitForSeconds(3);
+        UI.SetActive(false);
         portalPlane.gameObject.SetActive(true);
         cutsceneCamera.SetActive(true);
         myAnimationController.SetBool("FinishedPortal", true);
@@ -52,6 +55,6 @@ public class PortatActivate : MonoBehaviour
         yield return new WaitForSeconds(2);
         myAnimationController.SetBool("FinishedPortal", false);
         playerCamera.SetActive(true);
-
+        UI.SetActive(true);
     }
 }
