@@ -64,15 +64,14 @@ public class CollectableCount : MonoBehaviour
 
     IEnumerator PlayAnimation(int i)
     {
-
+        cutsceneCamera.SetActive(true);
         myAnimationController.SetBool("Play" + (i + 1).ToString(), true);
-        //cutsceneCamera.SetActive(true);
         playerCamera.SetActive(false);
         
         yield return new WaitForSeconds(2);
         myAnimationController.SetBool("Play" + (i + 1).ToString(), false);
         playerCamera.SetActive(true);
-        //cutsceneCamera.SetActive(false);
+        cutsceneCamera.SetActive(false);
         
     }
 

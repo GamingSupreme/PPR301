@@ -45,6 +45,7 @@ public class PortatActivate : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         portalPlane.gameObject.SetActive(true);
+        cutsceneCamera.SetActive(true);
         myAnimationController.SetBool("FinishedPortal", true);
         playerCamera.SetActive(false);
 
