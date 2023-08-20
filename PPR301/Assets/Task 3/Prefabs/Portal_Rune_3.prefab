@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3829092926488001221}
   m_Layer: 0
   m_Name: Portal_Rune_3
-  m_TagString: collectable2
+  m_TagString: collectable3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

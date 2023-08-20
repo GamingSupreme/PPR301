@@ -7,6 +7,12 @@ public class CollectableCount : MonoBehaviour
 {
     public TextMeshProUGUI collectableCounter;
 
+    [SerializeField] private Animator myAnimationController;
+
+    [Header("Cameras")]
+    public GameObject playerCamera;
+    public GameObject cutsceneCamera;
+
     [Header("Protal Relics")]
     public GameObject[] protalRelicArray = new GameObject[6];
     public int numberOfRelicsRemaining = 6;
@@ -46,13 +52,30 @@ public class CollectableCount : MonoBehaviour
                 collectablesArray[i] = true;
                 Destroy(collision.gameObject);
                 protalRelicArray[i].SetActive(true);
-
                 numberOfRelicsRemaining--;
-                collectableCounter.text = "Relics left: "+ (numberOfRelicsRemaining.ToString());
+                collectableCounter.text = "Relics left: " + (numberOfRelicsRemaining.ToString());
+
+                
+                StartCoroutine(PlayAnimation(i));
             }
         }
         
     }
+
+    IEnumerator PlayAnimation(int i)
+    {
+
+        myAnimationController.SetBool("Play" + (i + 1).ToString(), true);
+        //cutsceneCamera.SetActive(true);
+        playerCamera.SetActive(false);
+        
+        yield return new WaitForSeconds(2);
+        myAnimationController.SetBool("Play" + (i + 1).ToString(), false);
+        playerCamera.SetActive(true);
+        //cutsceneCamera.SetActive(false);
+        
+    }
+
 }
 
 /*

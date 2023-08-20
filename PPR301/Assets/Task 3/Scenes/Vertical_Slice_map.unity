@@ -865,6 +865,38 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -4803796886927540234, guid: 61414d5a6da2a704cbd3e3137b469462, type: 3}
+--- !u!1 &44355368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44355369}
+  m_Layer: 0
+  m_Name: CollectablePickupCS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44355369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44355368}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1577956190}
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &48458268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13983,7 +14015,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!320 &1241894173
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -16563,6 +16595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal_Rune_2
       objectReference: {fileID: 0}
+    - target: {fileID: 6332561781718319405, guid: 657f70b221ff2b14f8eed4e2470cc6ed, type: 3}
+      propertyPath: m_TagString
+      value: collectable2
+      objectReference: {fileID: 0}
     - target: {fileID: 6677175575477050263, guid: 657f70b221ff2b14f8eed4e2470cc6ed, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -18059,6 +18095,145 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2605931710798131250, guid: 48f454b9c7c6e8b40b16b7cda57fe0e6, type: 3}
+--- !u!1 &1577956189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577956190}
+  - component: {fileID: 1577956194}
+  - component: {fileID: 1577956193}
+  - component: {fileID: 1577956192}
+  - component: {fileID: 1577956191}
+  m_Layer: 0
+  m_Name: CollectablePickup Cam1
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577956190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577956189}
+  m_LocalRotation: {x: 0.13716947, y: -0.6936747, z: 0.13716951, w: 0.6936746}
+  m_LocalPosition: {x: -15.75, y: 2.79, z: 16.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 44355369}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 22.371, y: -90, z: 0}
+--- !u!95 &1577956191
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577956189}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7e2d331e44ffdb04abc7775f25f4d511, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1577956192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577956189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+--- !u!81 &1577956193
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577956189}
+  m_Enabled: 1
+--- !u!20 &1577956194
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577956189}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.1
+  far clip plane: 2500
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
 --- !u!1001 &1578711185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19495,6 +19670,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal_Rune_3
       objectReference: {fileID: 0}
+    - target: {fileID: 4171109969722374691, guid: 980d644008e81b944a95b9b97d1878a6, type: 3}
+      propertyPath: m_TagString
+      value: collectable3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 980d644008e81b944a95b9b97d1878a6, type: 3}
 --- !u!1001 &1695408055
@@ -20844,6 +21023,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectableCounter: {fileID: 1531197462}
+  myAnimationController: {fileID: 1577956191}
+  playerCamera: {fileID: 416228610}
+  cutsceneCamera: {fileID: 1577956189}
   protalRelicArray:
   - {fileID: 25970425}
   - {fileID: 935769455}
@@ -20888,6 +21070,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cc: {fileID: 1823426399}
   portalPlane: {fileID: 1984799347}
+  myAnimationController: {fileID: 1577956191}
+  playerCamera: {fileID: 416228610}
+  cutsceneCamera: {fileID: 1577956189}
 --- !u!114 &1823426415
 MonoBehaviour:
   m_ObjectHideFlags: 0
