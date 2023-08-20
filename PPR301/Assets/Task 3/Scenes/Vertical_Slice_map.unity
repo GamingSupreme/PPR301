@@ -21573,6 +21573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   collectableCounter: {fileID: 1531197462}
   myAnimationController: {fileID: 1577956191}
+  UI: {fileID: 1347593243}
   playerCamera: {fileID: 416228610}
   cutsceneCamera: {fileID: 1577956189}
   protalRelicArray:
@@ -21619,6 +21620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cc: {fileID: 1823426399}
   portalPlane: {fileID: 1984799347}
+  UI: {fileID: 1347593243}
   myAnimationController: {fileID: 1577956191}
   playerCamera: {fileID: 416228610}
   cutsceneCamera: {fileID: 1577956189}
