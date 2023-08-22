@@ -11709,6 +11709,34 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7873335290669065632, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873335290669065632, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 498bc0975f5ea7241ae2abd70e47d3c6, type: 2}
+    - target: {fileID: 7873335290669065632, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc74bba08afbfe446bcf343ec35d128e, type: 2}
+    - target: {fileID: 7873335290669065633, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4068373912626513877, guid: e397fdde86bc5604b8e6f8c84e225290, type: 3}
+    - target: {fileID: 7873335290669065638, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873335290669065638, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873335290669065638, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.004
+      objectReference: {fileID: 0}
     - target: {fileID: 7873335290897990948, guid: 77f8a726826c84c4b88df880d7908728, type: 3}
       propertyPath: m_Name
       value: CameraHolder
