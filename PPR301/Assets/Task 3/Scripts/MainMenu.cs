@@ -28,6 +28,12 @@ public class MainMenu : MonoBehaviour
         QuitGame();
     }
 
+    public void RestartGame()
+    {
+        // Quits the game
+        SceneManager.LoadScene("Start menu");
+    }
+
     public void Update()
     {
         // When the escape key is pressed -> exit game
@@ -50,4 +56,6 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
     
+
+
 }
