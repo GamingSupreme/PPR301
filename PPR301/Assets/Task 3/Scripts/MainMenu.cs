@@ -9,7 +9,12 @@ public class MainMenu : MonoBehaviour
     public GameObject StartPannel;
     public GameObject OptionsPannel;
 
-    
+    public void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
 
     public void PlayGame()
     {
