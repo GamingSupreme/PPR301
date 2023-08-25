@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Task 3/Scenes/End Screen.unity
     guid: fe3cc7a6c67dd9949a064e3e258b67e3
   - enabled: 1
-    path: Assets/Task 3/Scenes/Game Over.unity
+    path: Assets/Task 3/Scenes/Scenes not in use/Game Over.unity
     guid: 639022c2eb807b74b941a51a4ee64338
   m_configObjects: {}
