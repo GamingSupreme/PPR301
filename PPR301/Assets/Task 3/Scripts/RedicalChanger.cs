@@ -19,11 +19,11 @@ public class RedicalChanger : MonoBehaviour
 
         if (Physics.Raycast(theRay, out RaycastHit hit, CastRange))
         {
-            if (hit.collider.tag == "Untagged")
-            {
+            //if (hit.collider.tag == "Untagged")
+            //{
                 UI_Aimer.SetActive(true);
                 print("its a grappleable object");
-            }
+            //}
         }
         else
         {
