@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     //bonus movespeed in the air
     public float airMultiplier;
     //checks if the player can jump
-    bool readyToJump = true;
+    public bool readyToJump = true;
     
 
     [Header("Keybinds")]
