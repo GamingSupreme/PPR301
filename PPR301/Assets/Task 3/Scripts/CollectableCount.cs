@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class CollectableCount : MonoBehaviour
@@ -10,6 +11,8 @@ public class CollectableCount : MonoBehaviour
     [SerializeField] private Animator myAnimationController;
 
     public GameObject UI;
+    public GameObject TempRelic;
+    Image Test;
 
     [Header("Cameras")]
     public GameObject playerCamera;
@@ -52,6 +55,8 @@ public class CollectableCount : MonoBehaviour
                 Debug.Log("I COLLIDED AND DESTROYED A COLLECTABLE");
                 //If they collide, tick the collectable
                 collectablesArray[i] = true;
+                TempRelic = GameObject.Find("Relic" + (i + 1).ToString() + "Glow");
+                TempRelic.GetComponent<Image>().color = new Color (255f, 146f, 189f, 255f);
                 Destroy(collision.gameObject);
                 protalRelicArray[i].SetActive(true);
                 numberOfRelicsRemaining--;

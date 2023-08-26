@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     public PlayerMovement pm;
     public DashScript ds;
 
+    [Header("Jump Gameobjects")]
+    public GameObject doubleJ;
+    public GameObject singleJ;
+
     [Header("Lives Gameobjects")]
     public GameObject lives1;
     public GameObject lives2;
@@ -20,6 +24,19 @@ public class UIManager : MonoBehaviour
     public Image energyJuice;
 
     private void Update(){
+
+        if (pm.canDoubleJump == true){
+            doubleJ.SetActive(true);
+        } else if (pm.canDoubleJump == false){
+            doubleJ.SetActive(false);
+        }
+
+        if (pm.grounded == true){
+            singleJ.SetActive(true);
+        } else if (pm.grounded == false){
+            singleJ.SetActive(false);
+        }
+
        if (pm.lives == 3){
             lives1.SetActive(true);
             lives2.SetActive(true);
@@ -37,7 +54,7 @@ public class UIManager : MonoBehaviour
             energyJuice.fillAmount = 1;
         }
         else{
-            energyJuice.fillAmount = ((ds.dashCooldownTimer / ds.dashCooldown) * (100 / 1)/100);
+            energyJuice.fillAmount = 1 - ((ds.dashCooldownTimer / ds.dashCooldown) * (100 / 1)/100);
         }
         
     }
