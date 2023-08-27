@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void GroundCheck(){
         //now we shoot a raycast from the players body down and if it collides with an object masked as ground were grounded
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, ground);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.6f, ground);
     }
 
     private void MovePlayer(){
