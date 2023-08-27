@@ -16,23 +16,33 @@ public class PlayAudioOnKey : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Walking_Grass.isPlaying == true)
-        {
-            
-        }
+        //if (Walking_Grass.isPlaying == true)
+        //{
+        //    return;
+        //}
         if (Input.GetKeyDown(KeyCode.W) || 
             Input.GetKeyDown(KeyCode.A) || 
             Input.GetKeyDown(KeyCode.S) || 
-            Input.GetKeyDown(KeyCode.D) && //if player is moving
-            playMove.grounded == true && // if player is on the ground
-            Walking_Grass.isPlaying == false) // if audio is not playing
+            Input.GetKeyDown(KeyCode.D)) // if audio is not playing
         {
-            Walking_Grass.Play();
-            Debug.Log("walk audio good");
+            if (playMove.grounded == true && // if player is on the ground
+                Walking_Grass.isPlaying == false)
+            {
+                Walking_Grass.Play();
+                Debug.Log("walk audio good");
+            }
+            
         }
         else
         {
             Walking_Grass.Stop();
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Walking_Grass.Play();
+            Debug.Log("walk audio good");
+
         }
     }
 }
